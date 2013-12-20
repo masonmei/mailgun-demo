@@ -16,11 +16,13 @@ public class Mail {
     private String from;
     @NotNull
     private String to;
+    private String cc;
+    private String bcc;
     @NotNull
     private String subject;
     @NotNull
     private String content;
-    private MultipartFile attachment;
+    private MultipartFile[] attachment;
 
     public String getFrom() {
         return from;
@@ -36,6 +38,22 @@ public class Mail {
 
     public void setTo(String to) {
         this.to = to;
+    }
+
+    public String getCc() {
+        return cc;
+    }
+
+    public void setCc(String cc) {
+        this.cc = cc;
+    }
+
+    public String getBcc() {
+        return bcc;
+    }
+
+    public void setBcc(String bcc) {
+        this.bcc = bcc;
     }
 
     public String getSubject() {
@@ -54,11 +72,11 @@ public class Mail {
         this.content = content;
     }
 
-    public MultipartFile getAttachment() {
+    public MultipartFile[] getAttachment() {
         return attachment;
     }
 
-    public void setAttachment(MultipartFile attachment) {
+    public void setAttachment(MultipartFile[] attachment) {
         this.attachment = attachment;
     }
 }

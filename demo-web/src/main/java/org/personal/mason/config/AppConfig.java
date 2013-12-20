@@ -7,6 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,6 +29,12 @@ public class AppConfig {
     private String password;
     @Value("${mailgun.sender}")
     private String sender;
+    @Value("${executor.pool.capacity}")
+    private int queueCapacity;
+    @Value("${executor.pool.maxsize}")
+    private int maxPoolSize;
+    @Value("${executor.pool.size}")
+    private int corePoolSize;
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -40,5 +48,14 @@ public class AppConfig {
             mailGunSender.setDefaultSender(sender);
         }
         return mailGunSender;
+    }
+
+    @Bean
+    public TaskExecutor taskExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(corePoolSize);
+        executor.setMaxPoolSize(maxPoolSize);
+        executor.setQueueCapacity(queueCapacity);
+        return executor;
     }
 }

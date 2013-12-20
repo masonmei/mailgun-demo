@@ -50,7 +50,7 @@ public class MailGunSender {
      * @param attachments
      */
     public ClientResponse sendTextEmail(String from, List<String> receipts, List<String> cces, List<String> bcces, String subject, String content, List<File> attachments) {
-        if(from == null){
+        if(from == null || from.trim().isEmpty()){
             from = defaultSender;
         }
 
@@ -89,7 +89,7 @@ public class MailGunSender {
     }
 
     public ClientResponse sendHtmlEmail(String from, List<String> receipts, List<String> cces, List<String> bcces, String subject, String content, List<File> attachments) {
-        if(from == null){
+        if(from == null || from.trim().isEmpty()){
             from = defaultSender;
         }
 
