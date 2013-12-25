@@ -5,12 +5,28 @@
     <title>MailGun Demo Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/css/bootstrap-responsive.css"/>" rel="stylesheet">
+    <link rel="stylesheet" href="<c:url value="/resources/css/summernote.css"/>"/>
+    <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+
+    <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/summernote.js"/>"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+                    $('#content').summernote({
+                                height: 150
+                            }
+                    );
+                }
+        );
+
+        var onPostForm = function () {
+            alert($('.note-editor .note-editable').code());
+            var content = $('textarea[name="content"]').html($('.note-editor .note-editable').code());
+        }
+    </script>
     <link href="<c:url value="/resources/css/bootstrap-tagsinput.css"/>" rel="stylesheet">
 
-    <script>
-        $('.to').tagsinput();
-    </script>
 </head>
 <body>
 <div class="col-sm-12 container">
@@ -52,21 +68,21 @@
                 <label for="to" class="col-sm-3">To</label>
 
                 <div class="col-lg-9">
-                    <input id="to" name="to" required class="form-control" type="email" multiple >
+                    <input id="to" name="to" required class="form-control" type="email" multiple>
                 </div>
             </div>
             <div class="form-group">
                 <label for="cc" class="col-sm-3">CC</label>
 
                 <div class="col-lg-9">
-                    <input id="cc" name="cc" required class="form-control" type="email" multiple >
+                    <input id="cc" name="cc" required class="form-control" type="email" multiple>
                 </div>
             </div>
             <div class="form-group">
                 <label for="bcc" class="col-sm-3">BCC</label>
 
                 <div class="col-lg-9">
-                    <input id="bcc" name="bcc" required class="form-control" type="email" multiple >
+                    <input id="bcc" name="bcc" required class="form-control" type="email" multiple>
                 </div>
             </div>
             <div class="form-group">
@@ -86,14 +102,15 @@
             <div class="form-group">
                 <label for="attachment" class="col-sm-3">Attachment</label>
 
-                <div class="col-lg-9"><input id="attachment" name="attachment" class="form-control" type="file" multiple>
+                <div class="col-lg-9"><input id="attachment" name="attachment" class="form-control" type="file"
+                                             multiple>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3"></label>
 
                 <div class="col-lg-9"><input id="submit" type="submit" value="Send a Email"
-                                             class="btn-sm btn-primary ">
+                                             class="btn-sm btn-primary " onclick="onPostForm();">
                     <input id="reset" type="reset" value="Reset"
                            class="btn-sm btn-default">
                 </div>
@@ -102,8 +119,5 @@
     </div>
 </div>
 
-<script src="<c:url value="/resources/js/jquery-1.8.2.js" />"></script>
-<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
-<script src="<c:url value="/resources/js/bootstrap-tagsinput.js" />"></script>
 </body>
 </html>

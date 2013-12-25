@@ -43,6 +43,11 @@ public class HomeController {
         this.taskExecutor = taskExecutor;
     }
 
+    @RequestMapping(value = {"/index2"}, method = RequestMethod.GET)
+    public String home2() {
+        return "index2";
+    }
+
     @RequestMapping(value = {"/", "/index", "/home"}, method = RequestMethod.GET)
     public String home() {
         return "index";
